@@ -31,7 +31,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="item" items="${subjectsList}">
+				<c:forEach var="item" items="${subjectList}">
 					<c:url value="/retrieve/${item.id}" var="retrieveUrl" />
 					<tr>
 						<td>${item.name}</td>

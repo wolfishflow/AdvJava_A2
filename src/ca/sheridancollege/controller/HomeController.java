@@ -23,6 +23,7 @@ public class HomeController {
 	public String home(Model model){
 		//Student student = new Student();
 		//model.addAttribute("student", student);
+		model.addAttribute("subjectList", dao.getSubjectList());
 		return "home";
 	}
 	
@@ -30,7 +31,16 @@ public class HomeController {
 	public String addSubject(Model model){
 		Subject subject = new Subject();
 		model.addAttribute("subject", subject);
-		return "addSubjects";
+		return "addSubject";
+	}
+	
+	@RequestMapping("/saveSubject")
+	public String saveSubject(Model model, @ModelAttribute Subject subject){
+		System.out.println(subject.toString());
+		dao.insertSubject(subject);
+		//model.addAttribute("student", student);
+		model.addAttribute("subjectList", dao.getSubjectList());
+		return "home";
 	}
 	
 	@RequestMapping("/saveStudent")

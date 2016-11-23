@@ -3,6 +3,9 @@ package ca.sheridancollege.dao;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +13,7 @@ import org.hibernate.cfg.Configuration;
 
 import ca.sheridancollege.beans.Person;
 import ca.sheridancollege.beans.Student;
+import ca.sheridancollege.beans.Subject;
 
 public class DAO {
 
@@ -27,11 +31,28 @@ public class DAO {
 		session.close();
 	}
 	
-	public void transaction() {
+	public void insertSubject(Subject subject) {
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();		
+		session.beginTransaction();
+		session.save(subject);
 		session.getTransaction().commit();
 		session.close();
+	}
+	
+	public List<Subject> getSubjectList(){
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		
+		CriteriaQuery<Subject> criteria = criteriaBuilder.createQuery(Subject.class);
+		Root<Subject> root = criteria.from(Subject.class);
+		List<Subject> subjectList= session.createQuery(criteria).getResultList();
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return subjectList;
 	}
 	
 	public List<Student> getStudentList(){

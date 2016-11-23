@@ -1,10 +1,16 @@
 package ca.sheridancollege.beans;
 
 import javax.persistence.Embedded;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
+@SelectBeforeUpdate
+@DynamicUpdate
 @Entity
 public class Subject {
 
