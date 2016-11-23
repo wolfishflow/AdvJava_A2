@@ -20,10 +20,10 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
-	<h1>Wikipedia of Dank & Memes</h1>
-
-
 	<div class="container">
+		<h1>Wikipedia of Dank & Memes</h1>
+		<c:url value="/add" var="addUrl" />
+		<a href="${addUrl}">Add a Subject!</a>
 		<table class="striped">
 			<thead>
 				<tr>

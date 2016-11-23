@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ca.sheridancollege.beans.Student;
+import ca.sheridancollege.beans.Subject;
 import ca.sheridancollege.dao.DAO;
 
 @Controller
@@ -23,6 +24,13 @@ public class HomeController {
 		//Student student = new Student();
 		//model.addAttribute("student", student);
 		return "home";
+	}
+	
+	@RequestMapping("/add")
+	public String addSubject(Model model){
+		Subject subject = new Subject();
+		model.addAttribute("subject", subject);
+		return "addSubjects";
 	}
 	
 	@RequestMapping("/saveStudent")

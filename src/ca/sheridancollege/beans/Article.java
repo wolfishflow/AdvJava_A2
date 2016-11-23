@@ -7,18 +7,18 @@ import javax.persistence.Column;
 public class Article {
 	
 	//Vars
-	private String name;
+	private String articleName;
 	private Date lastModified;
 	private String editor;
 	@Column(columnDefinition="LONGBLOB")
 	private String contents;
 	
 	//Getters & Setters
-	public String getName() {
-		return name;
+	public String getArticleName() {
+		return articleName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setArticleName(String articleName) {
+		this.articleName = articleName;
 	}
 	public Date getLastModified() {
 		return lastModified;
@@ -40,8 +40,8 @@ public class Article {
 	}
 	
 	//Constructors
-	public Article(String name, Date lastModified, String editor, String contents) {
-		this.name = name;
+	public Article(String articleName, Date lastModified, String editor, String contents) {
+		this.articleName = articleName;
 		this.lastModified = lastModified;
 		this.editor = editor;
 		this.contents = contents;
@@ -50,13 +50,11 @@ public class Article {
 		
 	}
 	
-	
 	//To String
 	@Override
 	public String toString() {
-		return "Article [name=" + name + ", lastModified=" + lastModified + ", editor=" + editor + ", contents="
+		return "Article [articleName=" + articleName + ", lastModified=" + lastModified + ", editor=" + editor + ", contents="
 				+ contents + "]";
 	}
-	
 	
 }
