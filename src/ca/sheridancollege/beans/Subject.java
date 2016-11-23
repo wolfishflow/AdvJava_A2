@@ -9,7 +9,6 @@ import javax.persistence.Id;
 public class Subject {
 
 	//Vars
-	
 	@Id
 	@GeneratedValue
 	private int id;
@@ -18,7 +17,6 @@ public class Subject {
 	private Article article;
 	
 	//Getter & Setters
-	
 	public int getId() {
 		return id;
 	}
@@ -38,17 +36,15 @@ public class Subject {
 		this.article = article;
 	}
 	
+	//Constructors
 	public Subject() {
 	}
-	
-	
 	public Subject(String name, Article article) {
 		this.name = name;
 		this.article = article;
 	}
 	
 	//To String
-	
 	@Override
 	public String toString() {
 		return "Subject [id=" + id + ", name=" + name + ", article=" + article + "]";
