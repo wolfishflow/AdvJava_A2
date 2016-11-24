@@ -1,6 +1,8 @@
 package ca.sheridancollege.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -38,33 +40,36 @@ public class HomeController {
 	public String saveSubject(Model model, @ModelAttribute Subject subject){
 		System.out.println(subject.toString());
 		dao.insertSubject(subject);
-		//model.addAttribute("student", student);
 		model.addAttribute("subjectList", dao.getSubjectList());
 		return "home";
 	}
 	
-	@RequestMapping("/saveStudent")
-	public String saveStudent(Model model, @ModelAttribute Student student){
-		System.out.println(student.toString());
-		dao.insertStudent(student);
-		//model.addAttribute("student", student);
-		model.addAttribute("studentList", dao.getStudentList());
-		return "displayStudents";
+	@RequestMapping("/saveArticle")
+	public String saveArticle(Model model, @ModelAttribute Subject subject){
+		System.out.println(subject.toString());
+		Calendar date = Calendar.getInstance();
+		subject.getArticle().setLastModified(date);
+		dao.insertSubject(subject);
+		model.addAttribute("subjectList", dao.getSubjectList());
+		return "home";
 	}
 	
-	@RequestMapping(value="retrieve/{id}")
-	public String updateCharacter(Model model, @PathVariable int id) {
-		
-		System.out.println(dao.getSubject(id).toString());
-//		List<Student> listUpdated = dao.getStudentList();
-//		
-//		for(int i=0; i<listUpdated.size(); i++){
-//			if(listUpdated.get(i).getId() == id)
-//			{
-//				model.addAttribute("studentDetail", listUpdated.get(i));
-//			}
-//		}
-		model.addAttribute("subject", dao.getSubject(id));
-		return "home";
+	@RequestMapping("/addArticle/{name}")
+	public String addArticle(Model model, @PathVariable String name){
+		//List<Subject> subject = dao.getSubject(id);
+		Subject subject = new Subject();
+		model.addAttribute("subject", subject);
+		model.addAttribute("subjectName", name);
+		//model.addAttribute("subjectId", id);
+		return "addArticle";
+	}
+	
+	@RequestMapping(value="retrieve/{name}")
+	public String updateCharacter(Model model, @PathVariable String name) {
+		System.out.println(dao.getSubject(name).toString());
+		model.addAttribute("subject", dao.getSubject(name));
+		model.addAttribute("subjectName", name);
+		//model.addAttribute("subjectId", id);
+		return "displaySubject";
 	}
 }

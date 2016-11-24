@@ -56,7 +56,24 @@ public class DAO {
 	}
 	
 	
-	public List<Subject> getSubject(int id){
+	public List<Subject> getSubject(String name){
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		
+		CriteriaQuery<Subject> criteria = criteriaBuilder.createQuery(Subject.class);
+		Root<Subject> root = criteria.from(Subject.class);
+		criteria.where(criteriaBuilder.equal(root.get("name"), name));
+		List<Subject> subjectList= session.createQuery(criteria).getResultList();
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return subjectList;
+	}
+	
+	public String getSubjectName(int id){
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
@@ -70,34 +87,25 @@ public class DAO {
 		session.getTransaction().commit();
 		session.close();
 		
-		return subjectList;
+		return subjectList.get(0).getName();
 	}
 	
-	
-	public List<Student> getStudentList(){
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		
-		Query query= session.createQuery("from Student");
-		List<Student> studentList= (List<Student>) query.getResultList();
-		
-		session.getTransaction().commit();
-		session.close();
-		
-		return studentList;
-	}
-	
-	public Student getStudent(int id){
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		
-		Query query= session.createQuery("from Student");
-		Student student= (Student) query.getResultList();
-		
-		session.getTransaction().commit();
-		session.close();
-		
-		return student;
-	}
+//	
+//	public int getSubjectId(int id){
+//		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+//		
+//		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+//		
+//		CriteriaQuery<Subject> criteria = criteriaBuilder.createQuery(Subject.class);
+//		Root<Subject> root = criteria.from(Subject.class);
+//		criteria.where(criteriaBuilder.equal(root.get("id"), id));
+//		List<Subject> subjectList= session.createQuery(criteria).getResultList();
+//		
+//		session.getTransaction().commit();
+//		session.close();
+//		
+//		return subjectList.get(0).getId();
+//	}
 	
 }

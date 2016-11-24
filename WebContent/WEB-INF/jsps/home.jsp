@@ -33,7 +33,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="item" items="${subjectList}">
-					<c:url value="/retrieve/${item.id}" var="retrieveUrl" />
+					<c:url value="/retrieve/${item.name}" var="retrieveUrl" />
 					<tr>
 						<td>${item.name}</td>
 						<td><a href="${retrieveUrl}">${item.name}</a></td>

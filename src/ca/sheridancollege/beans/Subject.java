@@ -5,6 +5,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SelectBeforeUpdate;
@@ -15,32 +16,28 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 public class Subject {
 
 	//Vars
+//	@Id
+//	@GeneratedValue
+//	private int id;
 	@Id
-	@GeneratedValue
-	private int id;
 	private String name;
-	@Embedded
-	private Article article;
+	@OneToMany
+	private List<Article> article;
 	
 	//Getter & Setters
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+//	public int getId() {
+//		return id;
+//	}
+//	public void setId(int id) {
+//		this.id = id;
+//	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Article getArticle() {
-		return article;
-	}
-	public void setArticle(Article article) {
-		this.article = article;
-	}
+	
 	
 	//Constructors
 	public Subject() {
@@ -53,7 +50,7 @@ public class Subject {
 	//To String
 	@Override
 	public String toString() {
-		return "Subject [id=" + id + ", name=" + name + ", article=" + article + "]";
+		return "Subject [name=" + name + ", article=" + article + "]";
 	}
 	
 	

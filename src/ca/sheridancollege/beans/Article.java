@@ -1,14 +1,23 @@
 package ca.sheridancollege.beans;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+@SelectBeforeUpdate
+@DynamicUpdate
+@Entity
 public class Article {
 	
 	//Vars
+	@Id
 	private String articleName;
-	private Date lastModified;
+	private Calendar lastModified;
 	private String editor;
 	@Column(columnDefinition="LONGBLOB")
 	private String contents;
@@ -20,10 +29,10 @@ public class Article {
 	public void setArticleName(String articleName) {
 		this.articleName = articleName;
 	}
-	public Date getLastModified() {
+	public Calendar getLastModified() {
 		return lastModified;
 	}
-	public void setLastModified(Date lastModified) {
+	public void setLastModified(Calendar lastModified) {
 		this.lastModified = lastModified;
 	}
 	public String getEditor() {
@@ -40,9 +49,14 @@ public class Article {
 	}
 	
 	//Constructors
-	public Article(String articleName, Date lastModified, String editor, String contents) {
+	public Article(String articleName, Calendar lastModified, String editor, String contents) {
 		this.articleName = articleName;
 		this.lastModified = lastModified;
+		this.editor = editor;
+		this.contents = contents;
+	}
+	public Article(String articleName, String editor, String contents) {
+		this.articleName = articleName;
 		this.editor = editor;
 		this.contents = contents;
 	}
