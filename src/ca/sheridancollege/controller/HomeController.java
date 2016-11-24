@@ -54,14 +54,17 @@ public class HomeController {
 	
 	@RequestMapping(value="retrieve/{id}")
 	public String updateCharacter(Model model, @PathVariable int id) {
-		List<Student> listUpdated = dao.getStudentList();
 		
-		for(int i=0; i<listUpdated.size(); i++){
-			if(listUpdated.get(i).getId() == id)
-			{
-				model.addAttribute("studentDetail", listUpdated.get(i));
-			}
-		}
-		return "update";
+		System.out.println(dao.getSubject(id).toString());
+//		List<Student> listUpdated = dao.getStudentList();
+//		
+//		for(int i=0; i<listUpdated.size(); i++){
+//			if(listUpdated.get(i).getId() == id)
+//			{
+//				model.addAttribute("studentDetail", listUpdated.get(i));
+//			}
+//		}
+		model.addAttribute("subject", dao.getSubject(id));
+		return "home";
 	}
 }

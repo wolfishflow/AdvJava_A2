@@ -55,6 +55,25 @@ public class DAO {
 		return subjectList;
 	}
 	
+	
+	public List<Subject> getSubject(int id){
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		
+		CriteriaQuery<Subject> criteria = criteriaBuilder.createQuery(Subject.class);
+		Root<Subject> root = criteria.from(Subject.class);
+		criteria.where(criteriaBuilder.equal(root.get("id"), id));
+		List<Subject> subjectList= session.createQuery(criteria).getResultList();
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return subjectList;
+	}
+	
+	
 	public List<Student> getStudentList(){
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
