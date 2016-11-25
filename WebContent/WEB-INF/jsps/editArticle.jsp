@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
@@ -19,12 +19,13 @@
 		selector : '#contents'
 	});
 </script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>A2AlanSimon</title>
 </head>
 <body>
 	<div class="container">
-		<h1>Add an Article</h1>
+		<h1>Edit this Article</h1>
 		<c:url value="/" var="home" />
 		<div class="divider"></div>
 		<br />
@@ -42,7 +43,8 @@
 			<br />
 		User name: <form:input path="editor" value="${articleValue.editor}" />
 			<br />
-		Contents: <form:textarea path="contents" value="hello" />
+			Input Version: <form:input path="contents"
+				value="${articleValue.contents }" />
 			<br />
 			<br />
 			<input type="submit" value="Save edits" />

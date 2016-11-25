@@ -99,8 +99,9 @@ public class HomeController {
 		
 		@RequestMapping("/edit/{articleName}")
 		public String redirect(Model model, @PathVariable String articleName){
+			System.out.println(dao.getArticleList(articleName).get(0).toString());
 			model.addAttribute("articleValue", dao.getArticleList(articleName).get(0));
-			model.addAttribute("article", new Article());
+			model.addAttribute("article", dao.getArticleList(articleName).get(0));
 			return "editArticle";
 		}
 	
