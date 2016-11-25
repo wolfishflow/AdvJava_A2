@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,46 +13,46 @@
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+<script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
+<script>
+	tinymce.init({
+		selector : '#contents'
+	});
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>A2AlanSimon</title>
 </head>
 <body>
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
 	<div class="container">
-		<h1>Wikipedia of Dank Memes</h1>
-		<c:url value="/add" var="addUrl" />
+		<h1>Add an Article</h1>
+		<c:url value="/" var="home" />
 		<div class="divider"></div>
 		<br />
 		<div class="row">
 			<div class="col s6">
-				<a href="${addUrl}">Add a Subject!</a>
+				<a href="${home}">Head to Home</a>
 			</div>
-			
 		</div>
 		<div class="divider"></div>
 		<br />
-		<table class="striped">
-			<thead>
-				<tr>
-					<th data-field="name">Subjects</th>
-					<th data-field="link">Link</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="item" items="${subjectList}">
-					<c:url value="/retrieve/${item.name}" var="retrieveUrl" />
-					<tr>
-						<td>${item.name}</td>
-						<td><a href="${retrieveUrl}">${item.name}</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+		<c:url value="/editArticle" var="url" />
+		<form:form commandName="article" method="post" action="${url}">
+		Article name: <form:input path="articleName"
+				value="${articleValue.articleName}" />
+			<br />
+		User name: <form:input path="editor" value="${articleValue.editor}" />
+			<br />
+		Contents: <form:textarea path="contents" value="hello" />
+			<br />
+			<br />
+			<input type="submit" value="Save edits" />
+		</form:form>
 	</div>
+
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('select').material_select();

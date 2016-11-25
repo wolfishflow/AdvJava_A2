@@ -15,18 +15,26 @@
 <title>A2AlanSimon</title>
 </head>
 <body>
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
 
 	<div class="container">
+	
 		<h1>List of Articles under ${subjectName}</h1>
 		<c:url value="/addArticle/${subjectName}" var="addUrl" />
 		<c:url value="/" var="home" />
-		<a href="${addUrl}">Add an Article!</a>
+		<div class="divider"></div>
 		<br />
-		<a href="${home}">Home!</a>
+		<div class="row">
+			<div class="col s6">
+				<a href="${addUrl}">Add an Article!</a>
+			</div>
+			<div class="col s6">
+				<a href="${home}">Home!</a>
+			</div>
+		</div>
+		<div class="divider"></div>
+
+		<br />
 		<table class="striped">
 			<thead>
 				<tr>
@@ -41,16 +49,31 @@
 					<tr>
 						<td><a href="${retrieveUrl}">${item.articleName}</a></td>
 						<td>${item.editor}</td>
-						<td><fmt:formatDate type="both" dateStyle="short" value="${item.lastModified}"/></td>
+						<td><fmt:formatDate type="both" dateStyle="short"
+								value="${item.lastModified}" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="${addUrl}">Add an Article!</a>
 		<br />
-		<a href="${home}">Home!</a>
+		<div class="divider"></div>
+		<br />
+		<div class="row">
+			<div class="col s6">
+				<a href="${addUrl}">Add an Article!</a>
+			</div>
+			<div class="col s6">
+				<a href="${home}">Home!</a>
+			</div>
+		</div>
+		<div class="divider"></div>
+
 	</div>
 
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('select').material_select();

@@ -13,7 +13,6 @@ import org.hibernate.cfg.Configuration;
 
 import ca.sheridancollege.beans.Article;
 import ca.sheridancollege.beans.Person;
-import ca.sheridancollege.beans.Student;
 import ca.sheridancollege.beans.Subject;
 
 public class DAO {
@@ -24,7 +23,7 @@ public class DAO {
 	public void insertSubject(Subject subject) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(subject);
+		session.saveOrUpdate(subject);
 		session.getTransaction().commit();
 		session.close();
 	}
@@ -32,7 +31,7 @@ public class DAO {
 	public void insertArticle(Article article) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(article);
+		session.saveOrUpdate(article);
 		session.getTransaction().commit();
 		session.close();
 	}
