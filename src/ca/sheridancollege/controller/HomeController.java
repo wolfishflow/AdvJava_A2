@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ca.sheridancollege.beans.Article;
 import ca.sheridancollege.beans.Student;
 import ca.sheridancollege.beans.Subject;
 import ca.sheridancollege.dao.DAO;
@@ -20,12 +21,14 @@ import ca.sheridancollege.dao.DAO;
 public class HomeController {
 	
 	private DAO dao = new DAO();
+	private Subject placeholder;
 
 	@RequestMapping("/")
 	public String home(Model model){
 		//Student student = new Student();
 		//model.addAttribute("student", student);
 		model.addAttribute("subjectList", dao.getSubjectList());
+		System.out.println(dao.getSubjectList().toString());
 		return "home";
 	}
 	
@@ -45,31 +48,31 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/saveArticle")
-	public String saveArticle(Model model, @ModelAttribute Subject subject){
-		System.out.println(subject.toString());
-		Calendar date = Calendar.getInstance();
-		subject.getArticle().setLastModified(date);
-		dao.insertSubject(subject);
+	public String saveArticle(Model model, @ModelAttribute Article article){
+		//System.out.println(article.toString());
+		Date date = new Date();
+		Article insert = article;
+		insert.setLastModified(date);
+		System.out.println(insert.toString());
+		insert.setSubjectBean(placeholder);
+		dao.insertArticle(insert);
 		model.addAttribute("subjectList", dao.getSubjectList());
 		return "home";
 	}
 	
 	@RequestMapping("/addArticle/{name}")
 	public String addArticle(Model model, @PathVariable String name){
-		//List<Subject> subject = dao.getSubject(id);
-		Subject subject = new Subject();
-		model.addAttribute("subject", subject);
+		placeholder = dao.getSubject(name).get(0);
+		System.out.println(placeholder.toString());
 		model.addAttribute("subjectName", name);
-		//model.addAttribute("subjectId", id);
+		model.addAttribute("article", new Article());
 		return "addArticle";
 	}
 	
 	@RequestMapping(value="retrieve/{name}")
 	public String updateCharacter(Model model, @PathVariable String name) {
-		System.out.println(dao.getSubject(name).toString());
-		model.addAttribute("subject", dao.getSubject(name));
+		model.addAttribute("articleList", dao.getSubject(name).get(0).getArticleList());
 		model.addAttribute("subjectName", name);
-		//model.addAttribute("subjectId", id);
 		return "displaySubject";
 	}
 }
