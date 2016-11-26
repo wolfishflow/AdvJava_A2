@@ -25,7 +25,7 @@ public class Subject {
 	// private int id;
 	@Id
 	private String name;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "subjectBean", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "subjectBean", fetch = FetchType.EAGER)
 	private List<Article> articleList;
 
 	// Getter & Setters

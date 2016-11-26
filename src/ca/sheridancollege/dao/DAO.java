@@ -12,7 +12,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import ca.sheridancollege.beans.Article;
-import ca.sheridancollege.beans.Person;
 import ca.sheridancollege.beans.Subject;
 
 public class DAO {

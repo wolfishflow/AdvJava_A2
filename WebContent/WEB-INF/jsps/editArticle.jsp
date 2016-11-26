@@ -43,7 +43,7 @@
 			<br />
 		User name: <form:input path="editor" value="${articleValue.editor}" />
 			<br />
-			Input Version: <form:input path="contents"
+			Contents: <form:input path="contents"
 				value="${articleValue.contents }" />
 			<br />
 			<br />
