@@ -22,6 +22,11 @@ public class HomeController {
 	private DAO dao = new DAO();
 	private Subject placeholder;
 
+	/*Features:
+	Tiny MCE for editing and manipulating the contents of the article in the wiki.
+	JUnit Tests for testing the application.
+	Javascript for client side validation only seems to work on modern browsers ie; Chrome or FireFox
+	*/
 	//Home
 	@RequestMapping("/")
 	public String home(Model model){

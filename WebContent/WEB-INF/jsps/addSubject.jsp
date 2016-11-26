@@ -29,7 +29,7 @@
 		<div class="divider"></div>
 		<br />
 		<form:form commandName="subject" method="post" action="${url}">
-		Subject Name: <form:input path="name" />
+		Subject Name: <form:input path="name" required="required"/>
 			<br />
 			<input type="submit" value="Save Subject" />
 		</form:form>

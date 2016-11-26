@@ -37,16 +37,26 @@
 		<div class="divider"></div>
 		<br />
 		<c:url value="/editArticle" var="url" />
-		<form:form commandName="article" method="post" action="${url}">
-		Article name: <form:input path="articleName"
-				value="${articleValue.articleName}" />
-			<br />
-		User name: <form:input path="editor" value="${articleValue.editor}" />
-			<br />
-			Contents: <form:input path="contents"
-				value="${articleValue.contents }" />
-			<br />
-			<br />
+		<form:form class="col s12" commandName="article" method="post" action="${url}">
+		
+		<div class="row">
+			<div class="input-field col s12">
+				<form:input path="articleName" required="required" />
+				<label for="articleName">Article Name</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<form:input path="editor" required="required" />
+				<label for="editor">User Name</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<form:textarea class="materialize-textarea" path="contents" required="required" />
+				<label for="contents">Contents:</label>
+			</div>
+		</div>
 			<input type="submit" value="Save edits" />
 		</form:form>
 	</div>

@@ -38,9 +38,9 @@
 		<c:url value="/saveArticle" var="url" />
 		<form:form commandName="article" method="post" action="${url}">
 			<%-- Subject Name: <form:input path="name" value="${subjectName}" readonly="true"/><br/> --%>
-		Article name: <form:input path="articleName" />
+		Article name: <form:input path="articleName" required="required"/>
 			<br />
-		User name: <form:input path="editor" />
+		User name: <form:input path="editor" required="required"/>
 			<br />
 		Contents: <form:textarea path="contents" />
 			<br />
